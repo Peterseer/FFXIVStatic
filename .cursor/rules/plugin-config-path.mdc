@@ -1,0 +1,30 @@
+---
+description: 插件配置文件存储路径约定
+alwaysApply: true
+---
+
+# 插件配置文件路径约定
+
+该 AstrBot 插件的所有配置文件、持久化数据均保存在以下路径：
+
+```
+data/plugin_data/
+```
+
+## 规则
+
+- 读写配置文件时，路径必须以 `data/plugin_data/` 为根目录
+- 不得将配置文件保存到插件目录本身（如 `d:\Astrbot\plugins\FFXIVStatic\` 下）
+- 建议使用 `Path` 对象构建路径，保持跨平台兼容
+
+## 示例
+
+```python
+from pathlib import Path
+
+DATA_DIR = Path("data/plugin_data")
+CONFIG_FILE = DATA_DIR / "config.json"
+
+# 确保目录存在
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+```
